@@ -190,11 +190,15 @@ WantedBy=multi-user.target
 EOF
 ```
 
+
+
+
 ## we start zoro service.
 ```
 sudo systemctl daemon-reload
 sudo systemctl enable zoro
 sudo systemctl restart zoro
+```
 
 ## we start uzi miner service.
 ```
@@ -213,7 +217,7 @@ bazuka deposit
 bazuka help 
 ```
 
-## Node running
+## Running the node
 ```
 bazuka node Run node
 ```
@@ -223,25 +227,26 @@ bazuka node Run node
 bazuka rsend 
 ```
 
-## To print the node status:
+Check node status
 ```
 bazuka status 
 ```
 
-## Zero-contract Token withdraw:
+## Zero-contract Token withdraw
 ```
 bazuka withdraw
 ```
 
-## sending tokens with zero-transaction
-
+## Sending token by zero-transaction
 ```
 bazuka zsend
 ```
 
 
 
+
 > ## [Web Site](https://zeeka.io/)
 > ## [Zeeka Explorer](http://152.228.155.120:8000/)
 > ## [Zeeka Discord](https://discord.gg/vWkHJ8QU)
+
 

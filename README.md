@@ -5,7 +5,7 @@
 
 # Zeeka Fullnode Manual Installation
 
-This guide uses https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md as a reference.
+This guide uses [LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md) as a reference.
 
 
 ## We are doing a Linux system update.
@@ -77,7 +77,7 @@ journalctl -u zeeka -f -o cat
 
 # Bazuka Miner Installation guide
 
-https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/miner_node.md is used as a reference in this guide
+[LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/miner_node.md) is used as a reference in this guide
 
 # System requirements
 ```

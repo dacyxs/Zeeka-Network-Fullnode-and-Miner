@@ -110,7 +110,7 @@ cargo install --path .
 * Payment parameters (~700MB): [Link](https://drive.google.com/file/d/1sR-dJlr4W_A0sk37NkZaZm8UncMxqM-0/view?usp=sharing)
 * Update parameters (~6GB): [Link](https://drive.google.com/file/d/149tUhC0oXJxsXDnx7vODkOZtIYzC_5HO/view?usp=sharing)
 
-### Doğrudan CLI kullanarak indirmek için : 
+### To download directly using the CLI:
 ```
 sudo apt install curl
 ```
@@ -120,7 +120,7 @@ sudo apt install curl
 
 ## We paste and click the `https://www.googleapis.com/auth/drive.readonly` link in the Authorize API Section. Then we authorize with an account.
 
-## Exchange authorization code for tokens tıklıyoruz. Oluşan `access_token` kısmını kopyalıyoruz.
+## Click on Exchange authorization code for tokens. We copy the resulting `access_token` part.
 
 ## We paste the access_token that we copied into the access_token part.
 ```

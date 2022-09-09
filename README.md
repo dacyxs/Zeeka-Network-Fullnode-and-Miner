@@ -5,7 +5,7 @@
 
 # Zeeka Fullnode Manual Installation
 
-This guide uses [LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md) as a reference.
+This guide uses [LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazuka/fullnode_manuel.md) as a reference.
 
 
 ## We are doing a Linux system update.
@@ -77,7 +77,7 @@ journalctl -u zeeka -f -o cat
 
 # Bazuka Miner Installation guide
 
-[LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/miner_node.md) is used as a reference in this guide
+[LINK](https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazuka/miner_node.md) is used as a reference in this guide
 
 # System requirements
 ```
@@ -88,7 +88,7 @@ Disk : Minimum 32GB
 GPU: 2080Ti card
 ```
 
-## We are checking the bazuka version. (If you get a `DifferentGenesis` error, it means that the genesis block has changed. In this case, you need to delete the `~/.bazooka-debug` folder and reboot.)
+## We are checking the bazuka version. (If you get a `DifferentGenesis` error, it means that the genesis block has changed. In this case, you need to delete the `~/.bazuka-debug` folder and reboot.)
 ```
 cd ~/bazuka
 git pull origin master

@@ -234,6 +234,7 @@ bazuka withdraw
 ```
 
 ## sending tokens with zero-transaction
+
 ```
 bazuka zsend
 ```

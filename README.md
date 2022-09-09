@@ -1,6 +1,7 @@
 # <h1 align="center">Zeeka-Network-Fullnode-and-Miner</h1>
 
 This guide uses https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md as a reference.
+![image](https://user-images.githubusercontent.com/101191449/189378316-3d75e493-bb43-4bc3-a446-31b3f5ab330a.png)
 
 
 # Zeeka Fullnode Manual Installation
@@ -74,7 +75,7 @@ journalctl -u zeeka -f -o cat
 
 # Bazuka Miner Installation guide
 
-
+https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/miner_node.md is used as a reference in this guide
 
 # System requirements
 ```
@@ -84,4 +85,159 @@ Ram: 32GB ram
 Disk : Minimum 32GB
 GPU: 2080Ti card
 ```
+
+## We are checking the bazuka version. (If you get a `DifferentGenesis` error, it means that the genesis block has changed. In this case, you need to delete the `~/.bazooka-debug` folder and reboot.)
+```
+cd ~/bazuka
+git pull origin master
+cargo install --path .
+```
+
+## (DifferentGenesis errors) We delete the `~/.bazuka-debug` folder and start it again.
+```
+rm -rf ~/.bazuka-debug
+sudo systemctl restart zeeka
+```
+
+## We install MPN Launcher. (`zoro`)
+```
+git clone https://github.com/zeeka-network/zoro
+cd zoro
+cargo install --path .
+```
+
+## We load the assertion parameters.
+* Payment parameters (~700MB): [Link](https://drive.google.com/file/d/1sR-dJlr4W_A0sk37NkZaZm8UncMxqM-0/view?usp=sharing)
+* Update parameters (~6GB): [Link](https://drive.google.com/file/d/149tUhC0oXJxsXDnx7vODkOZtIYzC_5HO/view?usp=sharing)
+
+### Doğrudan CLI kullanarak indirmek için : 
+```
+sudo apt install curl
+```
+
+## We go to the [oauthplayground](https://developers.google.com/oauthplayground/) link.
+
+
+## We paste and click the `https://www.googleapis.com/auth/drive.readonly` link in the Authorize API Section. Then we authorize with an account.
+
+## Exchange authorization code for tokens tıklıyoruz. Oluşan `access_token` kısmını kopyalıyoruz.
+
+## We paste the access_token that we copied into the access_token part.
+```
+curl -H "Authorization: Bearer access_token" https://www.googleapis.com/drive/v3/files/1sR-dJlr4W_A0sk37NkZaZm8UncMxqM-0?alt=media -o payment_params.dat
+```
+
+## Again we go to [oauthplayground](https://developers.google.com/oauthplayground/).
+
+## We paste and click the `https://www.googleapis.com/auth/drive.readonly` link in the Authorize API Section. Then we authorize with an account.
+
+## Click on Exchange authorization code for tokens. We copy the resulting `access_token` part.
+
+## We paste the access_token that we copied into the access_token part.
+```
+curl -H "Authorization: Bearer access_token" https://www.googleapis.com/drive/v3/files/149tUhC0oXJxsXDnx7vODkOZtIYzC_5HO?alt=media -o update_params.dat
+```
+## We are running `zoro` with Node. In the `[executor account]` part, we need to enter a different name than the one we use for the node.
+```
+zoro --node 127.0.0.1:8765 --seed [executor account] --network debug \
+  --update-circuit-params ~/zoro/update_params.dat --payment-circuit-params ~/zoro/payment_params.dat \
+  --db ~/.bazuka-debug
+```
+
+## After a new block is created, uzi-miner should start working on the PoW puzzle, so you should also run uzi-miner on your system.
+* We write the number of threads we will use in the `THREADNUMBER` part.
+* 24-32 threads from 12-16vcpu recommended by the team
+```
+git clone https://github.com/zeeka-network/uzi-miner
+cd ~/uzi-miner
+cargo install --path .
+uzi-miner --node 127.0.0.1:8765 --threads THREADNUMBER
+```
+
+## we are creating a zoro service file. In the `[executor account]` part, we enter the name we entered when starting Zoro above.
+```
+tee /etc/systemd/system/zoro.service > /dev/null <<EOF
+[Unit]
+Description=Zoro
+After=network.target
+[Service]
+User=root
+ExecStart=/root/.cargo/bin/zoro --node 127.0.0.1:8765 --seed '[executor account]' --network debug --update-circuit-params ~/zoro/update_params.dat --payment-circuit-params ~/zoro/payment_params.dat --db ~/.bazuka-debug
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## We create uzi-miner service file. In the `THREADNUMBER` section, we enter the number of threads we entered when starting the uzi miner above.
+```
+tee /etc/systemd/system/uzi.service > /dev/null <<EOF
+[Unit]
+Description=Uzi
+After=network.target
+[Service]
+User=root
+ExecStart=/root/.cargo/bin/uzi-miner --node 127.0.0.1:8765 --threads THREADNUMBER
+Restart=on-failure
+RestartSec=3
+LimitNOFILE=65535
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## we start zoro service.
+```
+sudo systemctl daemon-reload
+sudo systemctl enable zoro
+sudo systemctl restart zoro
+
+## we start uzi miner service.
+```
+sudo systemctl daemon-reload
+sudo systemctl enable uzi
+sudo systemctl restart uzi
+```
+
+## Zero contract Deposit
+```
+bazuka deposit 
+```
+
+## Command to print this message or help of given subcommands
+```
+bazuka help 
+```
+
+## Node running
+```
+bazuka node Run node
+```
+
+## Usual token sending
+```
+bazuka rsend 
+```
+
+## To print the node status:
+```
+bazuka status 
+```
+
+## Zero-contract Token withdraw:
+```
+bazuka withdraw
+```
+
+## sending tokens with zero-transaction
+```
+bazuka zsend
+```
+
+> ## [Web Site](https://zeeka.io/)
+> ## [Zeeka Explorer](http://152.228.155.120:8000/)
+> ## [Zeeka Discord](https://discord.gg/vWkHJ8QU)
+
 

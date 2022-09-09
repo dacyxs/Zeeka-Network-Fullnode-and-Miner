@@ -1,10 +1,12 @@
 # <h1 align="center">Zeeka-Network-Fullnode-and-Miner</h1>
 ![image](https://user-images.githubusercontent.com/101191449/189383414-8959a27a-c86a-475e-b255-c8222d173669.png)
 
-This guide uses https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md as a reference.
 
 
 # Zeeka Fullnode Manual Installation
+
+This guide uses https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md as a reference.
+
 
 ## We are doing a Linux system update.
 ```

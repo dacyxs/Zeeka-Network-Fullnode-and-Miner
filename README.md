@@ -1,4 +1,4 @@
-# <h1 align="center"># Zeeka-Network-Fullnode-and-Miner</h1>
+# <h1 align="center">Zeeka-Network-Fullnode-and-Miner</h1>
 
 This guide uses https://github.com/mmc6185/node-testnets/blob/main/zeeka-network/bazooka/fullnode_manuel.md as a reference.
 
@@ -72,6 +72,16 @@ sudo systemctl restart zeeka
 journalctl -u zeeka -f -o cat
 ```
 
-# 
+# Bazuka Miner Installation guide
 
+
+
+# System requirements
+```
+OS : Linux
+CPU: 12-16 vcpu (AMD Ryzen 9 16-core)
+Ram: 32GB ram
+Disk : Minimum 32GB
+GPU: 2080Ti card
+```
 
